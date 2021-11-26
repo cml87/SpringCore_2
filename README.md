@@ -14,7 +14,8 @@ After this course we may continue the Spring learning track with the _pluralsigh
 - Spring Data JPA
 - Spring Security
 
-We'll build a Conference Registration App, focusing in modeling and wiring.
+We'll build a Conference Registration App, focusing in modeling and wiring. 
+It seems this app is used in other courses in _pluralsight_.
 
 ## What is Spring?
 Spring started out just and IoC (**Inversion of Control**) container, a technique also called dependency injection. It was conceived to reduce or replace some of the complex configuration in early Java EE applications. **_Later_**, Spring started to build around building enterprise applications without EJBs. They initially were just figuring out how to work better with EJBs, but then discovered that EJBs were actually not needed for a lot of situations.
