@@ -100,3 +100,58 @@ A same services class may use one of many available repository classes. All the 
 
 All classes in the service tier will also be implementing a same interface, or will group by the implemented interface.
 
+The following is an example of repository and service class with their interfaces, without using Spring. It uses hard-wiring:
+
+```java
+public interface SpeakerRepository {
+    List<Speaker> findAll();
+}
+```
+
+```java
+//stub repository class returning mock data
+public class HibernateSpeakerRepositoryImpl implements SpeakerRepository {
+    @Override
+    public List<Speaker> findAll() {
+        List<Speaker> speakers = new ArrayList<>();
+        Speaker speaker = new Speaker();
+
+        speaker.setFirstName("Brian");
+        speaker.setLastName("Hansen");
+ 
+        speakers.add(speaker);
+
+        return speakers;
+    }
+}
+```
+
+```java
+public interface SpeakerService {
+    public List<Speaker> findAll();
+}
+```
+```java
+public class SpeakerServiceImpl implements SpeakerService {
+
+    private SpeakerRepository speakerRepository = new HibernateSpeakerRepositoryImpl();
+
+    @Override
+    public List<Speaker> findAll(){
+        return speakerRepository.findAll();
+    }
+
+}
+```
+
+```java
+public class Application {
+
+    public static void main(String args[]){
+
+        SpeakerService speakerService = new SpeakerServiceImpl();
+        System.out.println(speakerService.findAll().get(0).getFirstName());
+
+    }
+}
+```
