@@ -10,11 +10,17 @@ import java.util.List;
 
 public class SpeakerServiceImpl implements SpeakerService {
 
-    private SpeakerRepository speakerRepository = new HibernateSpeakerRepositoryImpl();
+    // we'll inject this from outside
+    private SpeakerRepository speakerRepository;// = new HibernateSpeakerRepositoryImpl();
 
     @Override
     public List<Speaker> findAll(){
         return speakerRepository.findAll();
+    }
+
+
+    public void setSpeakerRepository(SpeakerRepository speakerRepository) {
+        this.speakerRepository = speakerRepository;
     }
 
 }
