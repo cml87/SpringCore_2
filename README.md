@@ -88,8 +88,15 @@ In Spring, the **Application Context** is the configured Spring IoC container wi
 
 ### Repository tier
 
-The repository layer is the composed by the classes that talk to the databases using its methods.
+The repository layer is composed by the classes that talk to the databases using its methods, or the data sources our application needs. In these classes we implement "low level" logic to access data from different sources. Spring can automatically generate many repository tier method for us.
+
+All classes in the repository tier will be implementing a same interface, or they will group in class sets by the implemented interface, I think.
 
 ### Service tier
 
 The service tier is composed by the classes that expose needed functionalities to the business logic layer. Classes in the service tier use repository tier classes. Business logic classes do not use repository classes directly, but through service classes.
+
+A same services class may use one of many available repository classes. All the repository classes will be implementing a same interface, so they will look the same to the service class.
+
+All classes in the service tier will also be implementing a same interface, or will group by the implemented interface.
+
