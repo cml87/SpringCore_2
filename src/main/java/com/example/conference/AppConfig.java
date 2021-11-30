@@ -12,10 +12,14 @@ public class AppConfig {
 
     // this return a service configured with a given repository
     // Here we do setter injection. The class where we want to inject the dependency this way must have the
-    // needed setter to inject the dependency from outiside
+    // needed setter to inject the dependency from outside. The same holds for constructor injection
     @Bean(name = "speakerService")
     public SpeakerService getSpeakerService(){
-        SpeakerServiceImpl speakerServiceImpl = new SpeakerServiceImpl();
+        // setter injection
+        // SpeakerServiceImpl speakerServiceImpl = new SpeakerServiceImpl();
+
+        // constructor injection
+        SpeakerServiceImpl speakerServiceImpl = new SpeakerServiceImpl(getSpeakerRepository());
         speakerServiceImpl.setSpeakerRepository(getSpeakerRepository());
         return speakerServiceImpl;
     }
