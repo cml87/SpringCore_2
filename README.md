@@ -82,3 +82,14 @@ Spring allow three types of configuration:
 3. Java based configuration
 
 In Spring, the **Application Context** is the configured Spring IoC container with all our dependencies wired up in it. It is mainly a hashmap of objects.
+
+
+## Business layer tiers
+
+### Repository tier
+
+The repository layer is the composed by the classes that talk to the databases using its methods.
+
+### Service tier
+
+The service tier is composed by the classes that expose needed functionalities to the business logic layer. Classes in the service tier use repository tier classes. Business logic classes do not use repository classes directly, but through service classes.

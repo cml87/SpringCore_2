@@ -14,20 +14,6 @@
         <java.version>1.8</java.version>
     </properties>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -40,5 +26,25 @@
         <!--            <version>1.3.2</version>-->
         <!--        </dependency>-->
     </dependencies>
+
+
+    <build>
+        <plugins>
+
+            <!--this must always be specified, otherwise Intellij will use its Java 5 compiler-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
 
 </project>
