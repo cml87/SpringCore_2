@@ -156,4 +156,70 @@ public class Application {
 }
 ```
 
-Now we'll use Spring to make our application configurable. Even the stub data we loaded on our repository class can be made configurable, we once the db is ready, we'll not need to make any change, almost.
+Now we'll use Spring to make our application configurable. Even the stub data we loaded on our repository class can be made configurable; once the db is ready, we'll not need to make any change, almost. 
+
+We must add the constructor and setters to the service class if we want to be able to inject the repository to it as a dependency, from outside:
+
+```java
+public class SpeakerServiceImpl implements SpeakerService {
+
+    // we'll inject this from outside
+    private SpeakerRepository speakerRepository;// = new HibernateSpeakerRepositoryImpl();
+
+    @Override
+    public List<Speaker> findAll(){
+        return speakerRepository.findAll();
+    }
+
+    public SpeakerServiceImpl(SpeakerRepository speakerRepository) {
+        this.speakerRepository = speakerRepository;
+    }
+
+    public void setSpeakerRepository(SpeakerRepository speakerRepository) {
+        this.speakerRepository = speakerRepository;
+    }
+}
+```
+The config class supposing we want to configure our beans through Java configuration would be:
+```java
+@Configuration
+public class AppConfig {
+
+    // this return a service configured with a given repository
+    // Here we do setter injection. The class where we want to inject the dependency this way must have the
+    // needed setter to inject the dependency from outside. The same holds for constructor injection
+    @Bean(name = "speakerService")
+    public SpeakerService getSpeakerService(){
+        // setter injection
+        // SpeakerServiceImpl speakerServiceImpl = new SpeakerServiceImpl();
+        //speakerServiceImpl.setSpeakerRepository(getSpeakerRepository());
+
+        // constructor injection
+        SpeakerServiceImpl speakerServiceImpl = new SpeakerServiceImpl(getSpeakerRepository());
+        return speakerServiceImpl;
+    }
+
+    @Bean(name = "speakerRepository")
+    public SpeakerRepository getSpeakerRepository(){
+        return new HibernateSpeakerRepositoryImpl();
+    }
+}
+```
+
+Here we see how to perform setter and constructor injection. The main() would then be:
+
+```java
+public class Application {
+    public static void main(String args[]){
+
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        //SpeakerService speakerService = new SpeakerServiceImpl();
+
+        SpeakerService speakerService = applicationContext.getBean("speakerService",SpeakerService.class);
+
+        System.out.println(speakerService.findAll().get(0).getFirstName());
+
+    }
+}
+```

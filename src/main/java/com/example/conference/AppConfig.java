@@ -17,10 +17,10 @@ public class AppConfig {
     public SpeakerService getSpeakerService(){
         // setter injection
         // SpeakerServiceImpl speakerServiceImpl = new SpeakerServiceImpl();
+        //speakerServiceImpl.setSpeakerRepository(getSpeakerRepository());
 
         // constructor injection
         SpeakerServiceImpl speakerServiceImpl = new SpeakerServiceImpl(getSpeakerRepository());
-        speakerServiceImpl.setSpeakerRepository(getSpeakerRepository());
         return speakerServiceImpl;
     }
 
