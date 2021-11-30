@@ -155,3 +155,5 @@ public class Application {
     }
 }
 ```
+
+Now we'll use Spring to make our application configurable. Even the stub data we loaded on our repository class can be made configurable, we once the db is ready, we'll not need to make any change, almost.
