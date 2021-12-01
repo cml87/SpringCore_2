@@ -24,7 +24,9 @@ public class AppConfig {
         //speakerServiceImpl.setSpeakerRepository(getSpeakerRepository());
 
         // constructor injection
-        SpeakerServiceImpl speakerServiceImpl = new SpeakerServiceImpl(getSpeakerRepository());
+        //SpeakerServiceImpl speakerServiceImpl = new SpeakerServiceImpl(getSpeakerRepository());
+        SpeakerServiceImpl speakerServiceImpl = new SpeakerServiceImpl();
+
         return speakerServiceImpl;
     }
 
