@@ -4,8 +4,10 @@ import com.example.conference.repository.HibernateSpeakerRepositoryImpl;
 import com.example.conference.repository.SpeakerRepository;
 import com.example.conference.service.SpeakerService;
 import com.example.conference.service.SpeakerServiceImpl;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class AppConfig {
@@ -14,6 +16,8 @@ public class AppConfig {
     // Here we do setter injection. The class where we want to inject the dependency this way must have the
     // needed setter to inject the dependency from outside. The same holds for constructor injection
     @Bean(name = "speakerService")
+    //@Scope(value = "singleton")
+    @Scope(value = BeanDefinition.SCOPE_SINGLETON)
     public SpeakerService getSpeakerService(){
         // setter injection
         // SpeakerServiceImpl speakerServiceImpl = new SpeakerServiceImpl();
