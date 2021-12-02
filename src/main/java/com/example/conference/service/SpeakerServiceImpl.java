@@ -12,13 +12,16 @@ public class SpeakerServiceImpl implements SpeakerService {
     private SpeakerRepository speakerRepository; //= new HibernateSpeakerRepositoryImpl();
 
     public SpeakerServiceImpl() {
+        System.out.println("calling SpeakerServiceImpl no-arg constructor ...");
     }
 
     public SpeakerServiceImpl(SpeakerRepository speakerRepository) {
+        System.out.println("calling SpeakerServiceImpl argument constructor ...");
         this.speakerRepository = speakerRepository;
     }
 
     public void setSpeakerRepository(SpeakerRepository speakerRepository) {
+        System.out.println("calling setter in SpeakerServiceImpl ... ");
         this.speakerRepository = speakerRepository;
     }
 
