@@ -7,7 +7,7 @@
     <bean name="speakerRepository"
           class = "com.example.conference.repository.HibernateSpeakerRepositoryImpl"/>
 
-    <bean name="speakerService" class="com.example.conference.service.SpeakerServiceImpl" autowire="byName">
+    <bean name="speakerService" class="com.example.conference.service.SpeakerServiceImpl" autowire="byType">
         <!--=setter injection-->
         <!--since the property name here is 'speakerRepository', the setter that will be called
          automatically to set it will be setSpeakerRepository(). This is a convention! -->

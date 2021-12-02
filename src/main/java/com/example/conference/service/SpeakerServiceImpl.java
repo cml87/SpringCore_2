@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SpeakerServiceImpl implements SpeakerService {
 
-    private SpeakerRepository rspeakerRepository; //= new HibernateSpeakerRepositoryImpl();
+    private SpeakerRepository speakerRepository; //= new HibernateSpeakerRepositoryImpl();
 
     public SpeakerServiceImpl() {
         System.out.println("calling SpeakerServiceImpl no-arg constructor ...");
@@ -18,17 +18,17 @@ public class SpeakerServiceImpl implements SpeakerService {
 
     public SpeakerServiceImpl(SpeakerRepository speakerRepository) {
         System.out.println("calling SpeakerServiceImpl argument constructor ...");
-        this.rspeakerRepository = speakerRepository;
+        this.speakerRepository = speakerRepository;
     }
 
-    public void setSpeakerRepository(HibernateSpeakerRepositoryImpl speakerRepository) {
+    public void setSSSepository(HibernateSpeakerRepositoryImpl/*or the interface*/ speakerRepository) {
         System.out.println("calling setter in SpeakerServiceImpl ... ");
-        this.rspeakerRepository = speakerRepository;
+        this.speakerRepository = speakerRepository;
     }
 
     @Override
     public List<Speaker> findAll(){
-        return rspeakerRepository.findAll();
+        return speakerRepository.findAll();
     }
 
 }
