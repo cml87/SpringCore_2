@@ -5,6 +5,7 @@ import com.example.conference.repository.HibernateSpeakerRepositoryImpl;
 import com.example.conference.repository.SpeakerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.List;
 
 //@Component
 @Service("speakerService")
+@Profile("dev")
 public class SpeakerServiceImpl implements SpeakerService {
 
     // we'll inject this from outside

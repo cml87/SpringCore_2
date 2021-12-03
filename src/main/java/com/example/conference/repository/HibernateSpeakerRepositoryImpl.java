@@ -2,6 +2,8 @@ package com.example.conference.repository;
 
 import com.example.conference.model.Speaker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -13,9 +15,13 @@ import java.util.List;
 
 //@Component
 @Repository("speakerRepository")
+@Profile("dev")
 public class HibernateSpeakerRepositoryImpl implements SpeakerRepository {
 
     private Calendar calendar;
+
+    @Value("#{ T(java.lang.Math).random()*100 }")
+    private double seedNum;
 
     @Autowired
     public void setCalendar(Calendar calendar){
@@ -29,6 +35,7 @@ public class HibernateSpeakerRepositoryImpl implements SpeakerRepository {
 
         speaker.setFirstName("Brian");
         speaker.setLastName("Hansen");
+        speaker.setSeedNum(seedNum);
 
         System.out.println("calendar: "+ calendar.getTime());
 
