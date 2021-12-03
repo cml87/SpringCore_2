@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 //service class. We may change the repository tear dependency if needed
@@ -26,6 +27,12 @@ public class SpeakerServiceImpl implements SpeakerService {
     public SpeakerServiceImpl(SpeakerRepository speakerRepository) {
         System.out.println("SpeakerServiceImpl repository constructor");
         this.speakerRepository = speakerRepository;
+    }
+
+    @PostConstruct// this will be called automatically after the dependency of the bean has been injected,
+    // either through constructor or setter
+    private void initialize(){
+        System.out.println("SpeakerServiceImpl initialize() post-constructor method call ...");
     }
 
     // Spring will look for a bean assignment compatible with 'SpeakerRepository' and will wire it
