@@ -19,6 +19,7 @@ import java.util.Calendar;
 @ComponentScan({"com.example.conference"})
 public class AppConfig {
 
+    // Here we hard code the factory as we want it though
     @Bean("calendarFactory")
     public CalendarFactory calendarFactory(){
         CalendarFactory calendarFactory = new CalendarFactory();
@@ -27,7 +28,7 @@ public class AppConfig {
     }
 
     // We'll get this been from the Spring container, but Spring will create it through
-    // the bean factory 'calendarFactory'
+    // the bean factory 'calendarFactory' defined here
     @Bean("calendar")
     public Calendar getCalendar() throws Exception {
         return calendarFactory().getObject();
